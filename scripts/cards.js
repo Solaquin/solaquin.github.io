@@ -1,5 +1,12 @@
+//Animación constante
 const radius = 8; // radio de oscilación
 const speed = 0.010; // velocidad base
+
+//Animación ocasional de vibración
+const vibrationDuration = 1000; // milisegundos
+const vibrationIntensity = 20;  // píxeles
+const vibrationInterval = 3000; // cada 3 segundos
+
 const cards = document.querySelectorAll(".graduate-card");
 const overlay = document.querySelector(".overlay");
 const closeOverlayBtn = document.querySelector(".clone-close");
@@ -13,12 +20,46 @@ cards.forEach((card, i) => {
   states.push({
     el: card,
     angle: Math.random() * Math.PI * 2,
-    speed: speed + Math.random() * 0.002, // velocidad distinta
-    offset: Math.random() * 1000 // desfase para variar trayectorias
+    speed: speed + Math.random() * 0.002,
+    offset: Math.random() * 1000,
   });
 });
 
-function animate() {
+
+function animateSomeCards() {
+  // Escoge una carta aleatoria
+  const randomState = states[Math.floor(Math.random() * states.length)];
+  const el = randomState.el;
+
+  const startTime = Date.now();
+  
+
+  function vibrate() {
+    const elapsed = Date.now() - startTime;
+    const progress = elapsed / vibrationDuration;
+
+    if (elapsed > vibrationDuration) {
+      el.style.transform = ""; // restaurar
+      return;
+    }
+
+    const intensity = vibrationIntensity * (1 - progress);
+    // Movimiento pseudoaleatorio (vibración)
+    const offsetX = (Math.random() - 0.5) * 1 * intensity;
+    const offsetY = (Math.random() - 0.5) * 1 * intensity;
+    const rotate = (Math.random() - 0.5) * 20; // grados de rotación pequeños (±2° aprox.)
+
+    const scale = getComputedStyle(el).getPropertyValue("--scale");
+    el.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg) scale(${scale})`;
+
+    requestAnimationFrame(vibrate); 
+  }
+
+  vibrate();
+}
+
+
+function animateConstantly() {
   const time = Date.now();
 
   states.forEach(state => {
@@ -33,7 +74,7 @@ function animate() {
     state.el.style.transform = `translate(${dx}px, ${dy}px)  scale(${scale})`;
   });
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateConstantly);
 }
 
 // Añadimos un listener para manejar los clicks en las cartas
@@ -54,12 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.classList.add("active"); 
       }
 
-
       clone.style.width = rect.width + "px";
       clone.style.height = rect.height + "px";
       clone.style.top = rect.top + "px";
       clone.style.left = rect.left + "px";
-
+      clone.style.animation = "none";
 
       document.body.appendChild(clone);
 
@@ -73,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       clone.addEventListener("transitionend", (e) => {
+        console.log("Transición terminada:", e.propertyName);
         if (e.propertyName === "transform") {
           clone.classList.add("ready");
           closeOverlayBtn.style.display = "block";
@@ -166,4 +207,4 @@ closeOverlayBtn.addEventListener("click", () => {
   }
 });
 
-animate(); //Anima las cartas
+setInterval(animateSomeCards, vibrationInterval);
