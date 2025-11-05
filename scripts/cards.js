@@ -124,13 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
             video.play(); // asegura reproducción
           });
 
+          
+
           // Cuando termina el video → imagen animada
           video.addEventListener("ended", () => {
-            video.remove();
             img.style.display = "";
             img.src = "../resources/" + animPath;
             img.alt = baseName + " Anim";
             img.classList.add("Anim");
+            video.remove();
             clone.classList.remove("playing"); // permitir nuevos clics
           });
         }
