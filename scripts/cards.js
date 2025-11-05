@@ -122,6 +122,9 @@ document.addEventListener("DOMContentLoaded", () => {
             img.style.display = "none";
             img.parentElement.insertBefore(video, label);
             video.play(); // asegura reproducción
+            // Precarga imagen animada
+            img.src = "../resources/" + animPath;
+            img.alt = baseName + " Anim";
           });
 
           
@@ -129,8 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
           // Cuando termina el video → imagen animada
           video.addEventListener("ended", () => {
             img.style.display = "";
-            img.src = "../resources/" + animPath;
-            img.alt = baseName + " Anim";
             img.classList.add("Anim");
             video.remove();
             clone.classList.remove("playing"); // permitir nuevos clics
