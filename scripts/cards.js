@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let baseName = originalPath.substring(0, originalPath.lastIndexOf("."));
         let videoPath = "../resources/videos/" + baseName + "-Transicion.mp4"; // ejemplo: JuanFique-Anim.mp4
         let extension = ".png"   // ".jpg"
-        let animPath = baseName + "-Anim" + extension;
+        let animPath = "../resources/anim/" + baseName + "-Anim" + extension;
 
 
         console.log("imgState:", imgState);
