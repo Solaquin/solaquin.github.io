@@ -7,6 +7,8 @@ const vibrationDuration = 1000; // milisegundos
 const vibrationIntensity = 20;  // píxeles
 const vibrationInterval = 3000; // cada 3 segundos
 
+let flipped = false;
+
 const cards = document.querySelectorAll(".graduate-card");
 const overlay = document.querySelector(".overlay");
 const closeOverlayBtn = document.querySelector(".clone-close");
@@ -14,6 +16,50 @@ const closeOverlayBtn = document.querySelector(".clone-close");
 let focusedEl = null;
 
 const states = [];
+
+function enableCardSwipeFlip(clone) {
+  let startX = 0;
+  let isDragging = false;
+  const flipThreshold = 40;
+
+  console.log("Card flipped:", flipped);
+
+  const handleStart = e => {
+    isDragging = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+  };
+
+  const handleMove = e => {
+    if (!isDragging) return;
+    const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    const diffX = currentX - startX;
+
+    if (Math.abs(diffX) > flipThreshold) {
+      flipped = !flipped;
+      isDragging = false;
+      clone.style.transition = "transform 0.6s ease";
+
+      console.log("Card flipped:", flipped);
+
+      if (flipped) {
+        clone.style.transform += " rotateY(180deg)";
+      }
+      else {
+        clone.style.transform = clone.style.transform.replace(" rotateY(180deg)", "");
+      }
+    }
+  };
+
+  const handleEnd = () => { isDragging = false; };
+
+  clone.addEventListener("mousedown", handleStart);
+  clone.addEventListener("mousemove", handleMove);
+  clone.addEventListener("mouseup", handleEnd);
+
+  clone.addEventListener("touchstart", handleStart);
+  clone.addEventListener("touchmove", handleMove);
+  clone.addEventListener("touchend", handleEnd);
+}
 
 // asignamos un ángulo inicial y velocidad distinta a cada carta
 cards.forEach((card, i) => {
@@ -87,8 +133,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const rect = card.getBoundingClientRect();
 
-      const clone = card.cloneNode(true);
+      const clone = document.createElement("div");
+      const faceCard = card.cloneNode(true);
+      const backCard = document.createElement("div");
+
+      clone.appendChild(faceCard);
+      clone.appendChild(backCard);
+
       clone.classList.add("clone-card");
+      faceCard.classList.add("face-card");
+      backCard.classList.add("back-card");
+
+      enableCardSwipeFlip(clone);
+
+      //Back Card test
+      backCard.innerHTML = "<h2>Información del Graduado</h2><p>Se pondrán más detalles sobre el graduado, como su especialidad, logros, o cualquier otra información relevante.</p>";
       
       // Desenfocar el overlay
       if(!overlay.classList.contains("active")){
@@ -103,13 +162,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.body.appendChild(clone);
 
+      const observer = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          backCard.style.width = `${width}px`;
+          backCard.style.height = `${height}px`;
+        }
+      });
+
+      observer.observe(faceCard);
+
       requestAnimationFrame(() => {
-        clone.style.top    = "50%";
+        clone.style.top    = "5%";
         clone.style.left   = "50%";
         clone.style.transform = "translate(-50%, -50%) scale(1.5)";
         clone.style.width  = "50%";       // ocupa el 90% del ancho de la pantalla
         clone.style.maxWidth = "350px";   // límite en pantallas grandes
-        clone.style.height = "auto";      // altura automática para mantener la proporción
+        clone.style.height = "auto";
       });
 
       clone.addEventListener("transitionend", (e) => {
@@ -120,6 +189,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
+
+
       // Al hacer click en el clon → cambiar imagen (De momento, luego inicia animación)
       clone.addEventListener("click", () => {
 
@@ -129,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
           img.dataset.original = img.src.split('/').pop(); // ejemplo: "JuanFique.png"
         }
 
-        if (!clone.classList.contains("ready") || clone.classList.contains("playing")) return;
+        if (!clone.classList.contains("ready") || clone.classList.contains("playing") || flipped) return;
         clone.classList.add("playing");
 
         let imgState = img.classList.contains("Anim") ? "anim" : "static";
