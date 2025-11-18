@@ -146,8 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       enableCardSwipeFlip(clone);
 
+      actualCardName = faceCard.querySelector(".graduate-name").innerText;
+      backDescription = faceCard.querySelector(".graduate-desc").dataset.description || "Descripción no disponible.";
+
       //Back Card test
-      backCard.innerHTML = "<h2>Información del Graduado</h2><p>Se pondrán más detalles sobre el graduado, como su especialidad, logros, o cualquier otra información relevante.</p>";
+      backCard.innerHTML = `<h2>${actualCardName}</h2><p>${backDescription}</p>`;
       
       // Desenfocar el overlay
       if(!overlay.classList.contains("active")){
