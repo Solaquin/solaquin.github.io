@@ -8,20 +8,21 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Escudo_oficial_Universidad_Militar_Nueva_Granada.png/548px-Escudo_oficial_Universidad_Militar_Nueva_Granada.png">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- CSS integrado (reemplaza tu Escritorio-styles.css con el contenido que te doy abajo) -->
     <link rel="stylesheet" href="../styles/Escritorio-styles.css">
 </head>
-<body id="desktop-page">
+<body data-page = "desktop">
     <div class="overlay">
         <header>
             <img class="logo" src="../resources/others/logo_white.png" alt="Logo UMNG">
             <h1><b>GRADUADOS</b> Diseño 3</h1>
             <div class ="icons">
-                <button class="icon-button"><i class="bi bi-download" style="font-size: 2rem; color: #fff;"></i></button>
-                <button class="icon-button"><i class="bi bi-share" style="font-size: 2rem; color: #fff;"></i></button>
+                <button class="icon-button share"><i class="bi bi-share" ></i></button>
+                <button class="icon-button phone"><i class="bi bi-phone" ></i></button>
             </div>
         </header>
         <h2>Te mostramos el futuro ¿listo para inspirarte?</h2>
@@ -210,6 +211,7 @@
     <!-- Botón cerrar (visible cuando se abre el clone) -->
     <button class="clone-close icon-button" aria-label="Cerrar"><i class="bi bi-x-circle" style="font-size: 2rem;"></i></button>
 
-<script src="../scripts/cards.js"></script>
+    <script src="../scripts/cards.js"></script>
+    <script src="../scripts/icons.js"></script>
 </body>
 </html>
