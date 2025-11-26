@@ -99,7 +99,7 @@ OVERLAY / BACKGROUND
 MOSAICO / GRID DE TARJETAS
 ========================================================= */
 .mosaic {
-  overflow-y: hidden;
+  overflow: hidden;
   overscroll-behavior: contain;
   position: fixed;
   left: 0%;
@@ -113,12 +113,22 @@ MOSAICO / GRID DE TARJETAS
   pointer-events: all;
   perspective: 1200px;
   clip-path: polygon(
-    10% 0%, 90% 0%,
-    100% 50%, 90% 100%,
-    10% 100%, 0% 50%
+    15% 0%, 85% 0%,
+    95% 50%, 85% 100%,
+    15% 100%, 5% 50%
   );
 }
 
+.bg-img {
+  position: absolute;
+  top: -20%;
+  left: -8%;
+  width: auto;
+  height: 2000px;
+  rotate: 35deg;
+  opacity: 0.2;
+  pointer-events: none;
+}
 
 
 .graduate-cards-container {
@@ -344,7 +354,7 @@ CLONE CARD (VENTANA AMPLIADA)
   align-items: center;
   justify-content: center;
 
-  background: #f7b424;
+  background: var(--third-color);
   color: #000;
   transform: rotateY(180deg);
   border-radius: 40px;
@@ -359,12 +369,13 @@ CLONE CARD (VENTANA AMPLIADA)
 .back-card h2 {
   font-size: clamp(1rem, 2vw, 1.5rem); /* se adapta al ancho de pantalla */
   margin: 20px 0 10px;
-  color:#000;
+  color:#fff;
   font-weight: bold;
 }
 
 .back-card p {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color:#fff;
   margin: 0 20px 20px;
   text-align: center;
 }
