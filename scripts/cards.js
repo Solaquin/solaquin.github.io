@@ -15,6 +15,24 @@ let focusedEl = null;
 
 const states = [];
 
+function doFakeFlipOnce(clone) {
+  const flipInner = clone.querySelector(".flip-inner");
+  if (clone.dataset.flipped === "true") return;
+
+  let base = getComputedStyle(flipInner).transform;
+  if (base === "none") {
+    base = "rotateY(0deg)";
+  }
+  flipInner.animate(
+    [
+      { transform: base},
+      { transform: "rotateY(40deg)" },
+      { transform: base}
+    ],
+    { duration: 1200, easing: "ease-in-out" }
+  );
+}
+
 function enableCardSwipeFlip(clone) {
   const flipInner = clone.querySelector(".flip-inner");
   let localFlipped = false;
@@ -61,6 +79,105 @@ function enableCardSwipeFlip(clone) {
   clone.addEventListener("touchmove", handleMove);
   clone.addEventListener("touchend", handleEnd);
 }
+
+function showCenteredRippleOnClone(clone, size = 120) {
+    if (!clone) return;
+
+    // Encontrar el objetivo visual para centrar el ripple:
+    // preferimos .face-card (la cara visible clonada), si no está usamos el clone completo.
+    const target = clone.querySelector('.face-card') || clone;
+
+    const cloneRect = clone.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    // Coordenadas del centro del target relativas al clone (en px)
+    const centerX = (targetRect.left - cloneRect.left) + targetRect.width / 2;
+    const centerY = (targetRect.top - cloneRect.top) + targetRect.height / 2;
+
+    // --- RIPPLES BASE (gota principal) ---
+    let ripple = clone.querySelector('.ripple');
+    if (!ripple) {
+        ripple = document.createElement('div');
+        ripple.className = 'ripple';
+        ripple.style.position = 'absolute';
+        ripple.style.pointerEvents = 'none';
+        ripple.style.width = `${size}px`;
+        ripple.style.height = `${size}px`;
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(255,255,255,0.22)';
+        ripple.style.backdropFilter = 'blur(1px)';
+        ripple.style.boxShadow = '0 6px 18px rgba(0,0,0,0.25), inset 0 2px 6px rgba(255,255,255,0.12)';
+        clone.appendChild(ripple);
+    }
+
+    // posicionamos el elemento exactamente en el centro calculado
+    ripple.style.left = `${centerX}px`;
+    ripple.style.top = `${centerY}px`;
+    ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+    ripple.style.opacity = '0';
+
+    const anim = ripple.animate(
+        [
+            { transform: 'translate(-50%, -50%) scale(0)', opacity: 0 },
+            { transform: 'translate(-50%, -50%) scale(1.3)', opacity: 0.95 },
+            { transform: 'translate(-50%, -50%) scale(1)', opacity: 0 }
+        ],
+        {
+            duration: 700,
+            easing: 'cubic-bezier(.2,1,.2,1)'
+        }
+    );
+
+    anim.onfinish = () => {
+        try { ripple.remove(); } catch (e) {}
+    };
+
+    // --- ONDAS (waves) ---
+    const totalWaves = 3;  // puedes subirlo si quieres más impacto
+
+    for (let i = 1; i <= totalWaves; i++) {
+        const wave = document.createElement("div");
+        wave.className = "ripple-wave";
+
+        wave.style.position = "absolute";
+        wave.style.left = `${centerX}px`;
+        wave.style.top = `${centerY}px`;
+        wave.style.transform = "translate(-50%, -50%) scale(0)";
+        wave.style.opacity = "0.45";
+        wave.style.pointerEvents = "none";
+        wave.style.borderRadius = "50%";
+        wave.style.boxSizing = "border-box";
+        wave.style.border = "3px solid rgba(255,255,255,0.6)";
+
+        // ondas ligeramente más grandes por índice
+        const waveSize = size + i * 40;
+        wave.style.width = `${waveSize}px`;
+        wave.style.height = `${waveSize}px`;
+
+        clone.appendChild(wave);
+
+        // Duración y delay variable para escalonar un poco
+        const duration = 1100 + i * 180;
+        const delay = i * 120;
+
+        const waveAnim = wave.animate(
+            [
+                { transform: "translate(-50%, -50%) scale(0.6)", opacity: 0.45 },
+                { transform: "translate(-50%, -50%) scale(1.25)", opacity: 0 }
+            ],
+            {
+                duration: duration,
+                easing: "ease-out",
+                delay: delay
+            }
+        );
+
+        waveAnim.onfinish = () => {
+            try { wave.remove(); } catch (e) {}
+        };
+    }
+}
+
 
 // asignamos un ángulo inicial y velocidad distinta a cada carta
 cards.forEach((card, i) => {
@@ -197,7 +314,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
+      setTimeout(() => {
+        if (clone.dataset.flipped !== "true") {
+          doFakeFlipOnce(clone);
+        }
+      }, 4000); // igual a la transición .6s
 
+      setTimeout(() => {
+        showCenteredRippleOnClone(clone, 180);
+      }, 2000);
 
       // Al hacer click en el clon → cambiar imagen (De momento, luego inicia animación)
       clone.addEventListener("click", () => {
@@ -255,6 +380,10 @@ document.addEventListener("DOMContentLoaded", () => {
             img.classList.add("Anim");
             video.remove();
             clone.classList.remove("playing"); // permitir nuevos clics
+            setTimeout(() =>
+            {
+              doFakeFlipOnce(clone);
+            }, 1000);
           });
         }
         else
@@ -263,6 +392,10 @@ document.addEventListener("DOMContentLoaded", () => {
           img.alt = img.dataset.original.split('.')[0];
           img.classList.remove("Anim");
           clone.classList.remove("playing"); // permitir nuevos clics
+          setTimeout(() =>
+          {
+            doFakeFlipOnce(clone);
+          }, 1000);
         }
         void img.offsetWidth;
       });

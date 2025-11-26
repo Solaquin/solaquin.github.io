@@ -343,6 +343,7 @@ CLONE CARD (VENTANA AMPLIADA)
 
 /* BACK OF CARD */
 .face-card, .back-card {
+  border-radius: 40px;
   width: 100%;
   max-width: none;
   position: absolute;
