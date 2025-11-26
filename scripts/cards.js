@@ -7,8 +7,6 @@ const vibrationDuration = 1000; // milisegundos
 const vibrationIntensity = 20;  // píxeles
 const vibrationInterval = 3000; // cada 3 segundos
 
-let flipped = false;
-
 const cards = document.querySelectorAll(".graduate-card");
 const overlay = document.querySelector(".overlay");
 const closeOverlayBtn = document.querySelector(".clone-close");
@@ -18,11 +16,14 @@ let focusedEl = null;
 const states = [];
 
 function enableCardSwipeFlip(clone) {
+  const flipInner = clone.querySelector(".flip-inner");
+  let localFlipped = false;
+
   let startX = 0;
   let isDragging = false;
   const flipThreshold = 40;
 
-  console.log("Card flipped:", flipped);
+  console.log("Card flipped:", localFlipped);
 
   const handleStart = e => {
     isDragging = true;
@@ -35,18 +36,18 @@ function enableCardSwipeFlip(clone) {
     const diffX = currentX - startX;
 
     if (Math.abs(diffX) > flipThreshold) {
-      flipped = !flipped;
+
       isDragging = false;
       clone.style.transition = "transform 0.6s ease";
 
-      console.log("Card flipped:", flipped);
+      localFlipped = !localFlipped;
+      clone.dataset.flipped = localFlipped;
 
-      if (flipped) {
-        clone.style.transform += " rotateY(180deg)";
-      }
-      else {
-        clone.style.transform = clone.style.transform.replace(" rotateY(180deg)", "");
-      }
+      console.log("Card flipped:", localFlipped);
+
+      flipInner.style.transform = localFlipped
+        ? "rotateY(180deg)"
+        : "rotateY(0deg)";
     }
   };
 
@@ -134,11 +135,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const rect = card.getBoundingClientRect();
 
       const clone = document.createElement("div");
+      const flipInner = document.createElement("div");
+      flipInner.classList.add("flip-inner");
+
       const faceCard = card.cloneNode(true);
       const backCard = document.createElement("div");
 
-      clone.appendChild(faceCard);
-      clone.appendChild(backCard);
+      flipInner.appendChild(faceCard);
+      flipInner.appendChild(backCard);
+      clone.appendChild(flipInner);
 
       clone.classList.add("clone-card");
       faceCard.classList.add("face-card");
@@ -203,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
           img.dataset.original = img.src.split('/').pop(); // ejemplo: "JuanFique.png"
         }
 
-        if (!clone.classList.contains("ready") || clone.classList.contains("playing") || flipped) return;
+        if (!clone.classList.contains("ready") || clone.classList.contains("playing") || clone.dataset.flipped === "true") return;
         clone.classList.add("playing");
 
         let imgState = img.classList.contains("Anim") ? "anim" : "static";

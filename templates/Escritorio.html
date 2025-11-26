@@ -1,127 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mosaico Graduados - Desktop</title>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mosaico Graduados - Desktop (Integrado)</title>
+
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS integrado (reemplaza tu Escritorio-styles.css con el contenido que te doy abajo) -->
     <link rel="stylesheet" href="../styles/Escritorio-styles.css">
-  </head>
-  <body>
+</head>
+<body id="desktop-page">
     <div class="overlay">
-      <div class="mosaic">
-        <div class="graduate-card">
-          <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Juan David Fique Velasco</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Daniela.jpg" alt="Daniela Beltran" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Daniela Beltran</h2>
-            <p class="graduate-desc">Ingeniera En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Emily.jpg" alt="Emily Mora" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Emily Mora</h2>
-            <p class="graduate-desc">Ingeniera En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Isabela.jpg" alt="Isabela Gallego" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Isabela Gallego</h2>
-            <p class="graduate-desc">Ingeniera En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Karen.jpg" alt="Karen Silva" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Karen Silva</h2>
-            <p class="graduate-desc">Ingeniera En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Santiago.jpg" alt="Santiago Bolaños" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Santiago Bolaños</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Sebas.jpg" alt="Sebastian Vera" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Sebastian Vera</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Felipe.png" alt="Felipe" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Felipe</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/Andrew.jpg" alt="Andrew" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Andrew Garfield</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Juan David Fique Velasco</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Juan David Fique Velasco</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Juan David Fique Velasco</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Juan David Fique Velasco</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Juan David Fique Velasco</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
-        </div>
-        <div class="graduate-card">
-          <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
-          <div class="graduate-label">
-            <h3 class="graduate-name">Juan David Fique Velasco</h2>
-            <p class="graduate-desc">Ingeniero En Multimedia</p>
-          </div>
+        <header>
+            <img class="logo" src="../resources/others/logo_white.png" alt="Logo UMNG">
+            <h1><b>GRADUADOS</b> Diseño 3</h1>
+            <div class ="icons">
+                <button class="icon-button"><i class="bi bi-download" style="font-size: 2rem; color: #fff;"></i></button>
+                <button class="icon-button"><i class="bi bi-share" style="font-size: 2rem; color: #fff;"></i></button>
+            </div>
+        </header>
+        <h2>Te mostramos el futuro ¿listo para inspirarte?</h2>
+    <div class="mosaic">
+        <div class="graduate-cards-container">
+            <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/JuanFique.jpg" alt="Juan David Fique Velasco" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Juan David Fique</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Productor y Postproductor Audiovisual, creando contenido profesional.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/SimonPorras.jpg" alt="Simon Porras" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Simón Porras</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Tech Leader especializado en producción de software y videojuegos, impulsando experiencias interactivas de alto impacto.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Daniela.jpg" alt="Daniela Beltran" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Daniela Beltran</h2>
+                            <p class="graduate-desc" data-description="Proyectada como Artista 3D, modelando entornos y animación digital.">Ingeniera En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Emily.jpg" alt="Emily Mora" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Emily Mora</h2>
+                            <p class="graduate-desc" data-description="Proyectada como Especialista en Audio Digital, diseñando experiencias sonoras.">Ingeniera En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Isabela.jpg" alt="Isabela Gallego" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Isabela Gallego</h2>
+                            <p class="graduate-desc" data-description="Proyectada como Artista 2D y Character FX, creando efectos y animación digital.">Ingeniera En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Karen.jpg" alt="Karen Silva" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Karen Silva</h2>
+                            <p class="graduate-desc" data-description="Proyectada como Productora y Diseñadora Multimedia, creando contenidos creativos.">Ingeniera En Multimedia</p>
+                        </div>
+                    </div>
+                        <div class="graduate-card">
+                            <div class="ripple"></div>
+                        <img src="../resources/Santiago.jpg" alt="Santiago Bolaños" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Santiago Bolaños</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Modelador 3D y Especialista en Render, desarrollando visuales digitales.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Sebas.jpg" alt="Sebastian Vera" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Sebastian Vera</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Desarrollador de Videojuegos, creando experiencias interactivas.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Felipe.png" alt="Felipe Salamanca" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Felipe Salamanca</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Productor y Director de Cine, desarrollando narrativas audiovisuales.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Andrew.jpg" alt="Andrew" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Andrew Garfield</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Héroe Científico, combinando inteligencia, tecnología y responsabilidad para proteger la ciudad.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+
+                    <!-- Nuevas cartas -->
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/DanielMoreno.jpg" alt="Daniel Moreno" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Daniel Moreno</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Productor Multimedia, desarrollando contenido visual e interactivo para distintos medios.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/DannaRojas.jpg" alt="Danna Rojas" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Danna Rojas</h2>
+                            <p class="graduate-desc" data-description="Proyectada como Artista Conceptual, creando escenarios y diseños digitales.">Ingeniera En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/EdwardGarcia.jpg" alt="Edward Garcia" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Edward Garcia</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Productor Audiovisual y Musical, combinando sonido e imagen.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/NicolasAcevedo.jpg" alt="Nicolas Acevedo" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Nicolas Acevedo</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Animador 3D y Artista de VFX, colaborando en proyectos de animación y postproducción.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/PaulaLesmes.jpg" alt="Paula Lesmes" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Maria Paula Lesmes</h2>
+                            <p class="graduate-desc" data-description="Proyectada como Especialista en VFX y Animación 3D, aportando a proyectos de productoras multimedia.">Ingeniera En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/SamuelDali.jpg" alt="Samuel Dali" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Samuel Dali Gonzalez</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Desarrollador de Videojuegos, perfeccionando programación y creatividad.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+
+                    <!-- Change photos -->
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Dustyn.jpg" alt="Dustyn Perez" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Dustyn Perez</h2>
+                            <p class="graduate-desc" data-description="Proyectado como Programador de E-commerce, creando plataformas digitales.">Ingeniero En Multimedia</p>
+                        </div>
+                    </div>
+                    <div class="graduate-card">
+                        <div class="ripple"></div>
+                        <img src="../resources/Sofia.jpg" alt="Sofia Velandia" class="graduate-img">
+                        <div class="graduate-label">
+                            <h3 class="graduate-name">Sofia Velandia</h2>
+                            <p class="graduate-desc" data-description="Proyectada como Desarrolladora de Videojuegos y Animadora Digital, creando proyectos independientes.">Ingeniera En Multimedia</p>
+                        </div>
+                    </div>
+                </div>
         </div>
 
-      </div>
+        <!-- ...pega aquí el resto de tus tarjetas EXACTAMENTE como en tu HTML actual... -->
     </div>
-    <button class ="clone-close icon-button"><i class="bi bi-x-circle" style="font-size: 2rem;"></i></button>
-    <script src="../scripts/cards.js"></script>
-  </body>
+
+    </div>
+    <!-- Botón cerrar (visible cuando se abre el clone) -->
+    <button class="clone-close icon-button" aria-label="Cerrar"><i class="bi bi-x-circle" style="font-size: 2rem;"></i></button>
+
+<script src="../scripts/cards.js"></script>
+</body>
 </html>
